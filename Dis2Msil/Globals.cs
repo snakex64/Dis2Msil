@@ -14,8 +14,14 @@ namespace Dis2Msil
         public static OpCode[] singleByteOpCodes;
         public static Module[] modules = null;
 
+        private static bool Loaded = false;
+
         public static void LoadOpCodes()
         {
+            if (Loaded)
+                return;
+            Loaded = true;
+
             singleByteOpCodes = new OpCode[0x100];
             multiByteOpCodes = new OpCode[0x100];
             FieldInfo[] infoArray1 = typeof(OpCodes).GetFields();
